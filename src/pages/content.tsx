@@ -2,8 +2,8 @@ import React from 'react';
 
 type Props = {};
 
-const content = (props: Props) => {
-  return <div>content</div>;
+const Content = (props: Props) => {
+  return <div>Content</div>;
 };
 
-export default content;
+export default Content;
