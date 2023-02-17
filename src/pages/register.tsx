@@ -115,7 +115,7 @@ function Register() {
                     Register
                   </button>
 
-                  <h3 className="mt-2">
+                  <h3 className="mt-4">
                     Already have an account ?{' '}
                     <Link to={'/login'}>
                       <a className="font-medium text-blue-600 hover:text-blue-800 ml-2">
