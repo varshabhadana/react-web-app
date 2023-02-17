@@ -22,7 +22,6 @@ function Register() {
       ...form,
       [event.currentTarget.id]: event.currentTarget.value,
     });
-    console.log(form);
   }
   return (
     <div className="flex h-full md:h-screen items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-200  ">

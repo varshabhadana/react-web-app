@@ -7,9 +7,9 @@ function Header({}: Props) {
   return (
     <div className="flex justify-between h-[10px] w-auto p-8 mb-4 ">
       <div className="flex justify-between text-white">
-        <div>
+        <Link to={'/'}>
           <h1>COMPANY NAME</h1>
-        </div>
+        </Link>
       </div>
       <div>
         {' '}

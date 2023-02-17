@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Leanne",
+      "lastName": "Graham",
+      "email": "graham@gmail.com"
+    },
+    {
+      "id": 2,
+      "firstName": "Varsha",
+      "lastName": "Bhadana",
+      "email": "varsha@gmail.com"
+    },
+    {
+      "id": 3,
+      "firstName": "Ervin",
+      "lastName": "Howell",
+      "email": "ervin@gmail.com"
+    },
+    {
+      "id": 3,
+      "firstName": "Dennis",
+      "lastName": "Schulist",
+      "email": "dennis@gmail.com"
+    }
+  ]
+}

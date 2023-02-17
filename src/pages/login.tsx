@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-type loginForm = {
+type LoginForm = {
   email: string;
   password: string;
 };
@@ -12,14 +12,25 @@ const initialValues = {
 
 const Login = () => {
   const navigate = useNavigate();
-  const [loginForm, setLoginForm] = useState<loginForm>(initialValues);
+  const [loginForm, setLoginForm] = useState<LoginForm>(initialValues);
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setLoginForm({
       ...loginForm,
       [event.currentTarget.id]: event.currentTarget.value,
     });
-    console.log(loginForm);
   }
+
+  /*  async function loginHandle() {
+    const loginResponse = await fetch('https://jsonplaceholder.typicode.com/', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(loginForm),
+    })
+      .then((loginResponse) => loginResponse.json())
+      .then((json) => console.log(json));
+  } */
 
   return (
     <div>
@@ -93,7 +104,7 @@ const Login = () => {
                         <div className="text-center pt-1 mb-12 pb-1">
                           <button
                             className="inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3 bg-blue-500"
-                            type="button"
+                            type="submit"
                             data-mdb-ripple="true"
                             data-mdb-ripple-color="light"
                           >
