@@ -27,7 +27,7 @@ function Register() {
     });
   }
   async function registerHandle() {
-    await fetch('http://localhost:3000/users', {
+    const newUser = await fetch('http://localhost:3000/users', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({
@@ -38,7 +38,11 @@ function Register() {
         password: form.password,
       }),
     });
-    navigate('/Content');
+    const response = await newUser.json();
+    if (response.id) {
+      localStorage.setItem('userId', response.id);
+      navigate('/Content');
+    }
   }
   return (
     <div className="flex h-full md:h-screen items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-200  ">

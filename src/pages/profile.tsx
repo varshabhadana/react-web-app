@@ -12,7 +12,7 @@ export type UserDetail = {
 };
 
 const Profile = () => {
-  const { id } = useParams();
+  const id = localStorage.getItem('userId');
   const [userDetails, setUserDetails] = useState<UserDetail>();
 
   useEffect(() => {

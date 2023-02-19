@@ -20,6 +20,20 @@
       "lastName": "user",
       "email": "testuser@gmail.com",
       "password": "password"
+    },
+    {
+      "id": "18f5eaa4-500f-49c6-8969-ab84626ff8dc",
+      "firstName": "max",
+      "lastName": "nom",
+      "email": "varsha@gmail.com",
+      "password": "password"
+    },
+    {
+      "id": "9e77d645-6517-41b7-94f9-7ac1673c2c77",
+      "firstName": "abc",
+      "lastName": "user",
+      "email": "user@gmail.com",
+      "password": "password"
     }
   ]
 }

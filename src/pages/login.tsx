@@ -28,12 +28,14 @@ const Login = (props: any) => {
   }, []);
 
   async function loginHandle() {
-    const foundUser = users?.some((el) => {
+    const foundUser = users?.find((el) => {
       return el.email === loginForm.email && el.password === loginForm.password;
     });
     if (foundUser) {
       navigate('/Content');
+      localStorage.setItem('userId', String(foundUser.id));
     }
+
     console.log(foundUser);
   }
 
