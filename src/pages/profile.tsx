@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
@@ -12,13 +12,19 @@ export type UserDetail = {
 };
 
 const Profile = () => {
-  const id = localStorage.getItem('userId');
   const [userDetails, setUserDetails] = useState<UserDetail>();
+  const navigate = useNavigate();
+
+  const id = localStorage.getItem('userId');
 
   useEffect(() => {
-    fetch(`http://localhost:3000/users/${id}`)
-      .then((response) => response.json())
-      .then((json) => setUserDetails(json));
+    if (id) {
+      fetch(`http://localhost:3000/users/${id}`)
+        .then((response) => response.json())
+        .then((json) => setUserDetails(json));
+    } else {
+      navigate('/login');
+    }
   }, [id]);
 
   return (
@@ -35,7 +41,7 @@ const Profile = () => {
                 <div className="mb-4 border-b-2 p-1 ">
                   <img src="/youngboy.svg" alt="young boy avatar"></img>
                 </div>
-                <div className="flex justify-between text-sm text-gray-600 ">
+                <div className="flex justify-between text-sm text-gray-600  w-[180px] h-auto">
                   {' '}
                   <div>
                     {' '}
@@ -59,9 +65,7 @@ const Profile = () => {
                       />
                     </svg>
                   </div>
-                  <div className="ml-2 text-sm text-gray-600 mb-5">
-                    San Francisco
-                  </div>
+                  <div className="ml-2 text-sm text-gray-600 mb-5"></div>
                 </div>
               </div>
               <div className="w-10/12">
