@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 type Form = {
+  id: string;
   firstName: string;
   lastName: string;
   email: string;
   password: string;
 };
 const initialFormValues = {
+  id: '',
   firstName: '',
   lastName: '',
   email: '',
@@ -22,6 +25,20 @@ function Register() {
       ...form,
       [event.currentTarget.id]: event.currentTarget.value,
     });
+  }
+  async function registerHandle() {
+    await fetch('http://localhost:3000/users', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        id: uuidv4(),
+        firstName: form.firstName,
+        lastName: form.lastName,
+        email: form.email,
+        password: form.password,
+      }),
+    });
+    navigate('/Content');
   }
   return (
     <div className="flex h-full md:h-screen items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-200  ">
@@ -109,7 +126,7 @@ function Register() {
                   <button
                     className="inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3 bg-blue-500"
                     type="submit"
-                    /* onClick={registerHandler} */
+                    onClick={registerHandle}
                   >
                     Register
                   </button>
@@ -117,9 +134,9 @@ function Register() {
                   <h3 className="mt-4">
                     Already have an account ?{' '}
                     <Link to={'/login'}>
-                      <a className="font-medium text-blue-600 hover:text-blue-800 ml-2">
+                      <button className="font-medium text-blue-600 hover:text-blue-800 ml-2">
                         Login
-                      </a>
+                      </button>
                     </Link>{' '}
                   </h3>
                 </form>

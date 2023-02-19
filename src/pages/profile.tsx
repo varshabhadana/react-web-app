@@ -3,11 +3,12 @@ import { useParams } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
-type UserDetail = {
+export type UserDetail = {
   id: number;
   firstName: string;
   lastName: string;
   email: string;
+  password: string;
 };
 
 const Profile = () => {
@@ -32,7 +33,7 @@ const Profile = () => {
             <div className="flex p-8">
               <div className="flex flex-col my-2 mx-6">
                 <div className="mb-4 border-b-2 p-1 ">
-                  <img src="/youngboy.svg"></img>
+                  <img src="/youngboy.svg" alt="young boy avatar"></img>
                 </div>
                 <div className="flex justify-between text-sm text-gray-600 ">
                   {' '}

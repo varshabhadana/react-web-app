@@ -2,7 +2,7 @@ import React from 'react';
 
 type Props = {};
 
-function Footer({}: Props) {
+function Footer() {
   return (
     <div>
       <footer className="p-4  w-full bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800 ">

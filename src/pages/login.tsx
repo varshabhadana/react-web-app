@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { UserDetail } from './Profile';
 
 type LoginForm = {
   email: string;
@@ -10,27 +11,31 @@ const initialValues = {
   password: '',
 };
 
-const Login = () => {
+const Login = (props: any) => {
   const navigate = useNavigate();
   const [loginForm, setLoginForm] = useState<LoginForm>(initialValues);
+  const [users, setusers] = useState<UserDetail[]>([]);
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setLoginForm({
       ...loginForm,
       [event.currentTarget.id]: event.currentTarget.value,
     });
   }
+  useEffect(() => {
+    fetch('http://localhost:3000/users')
+      .then((response) => response.json())
+      .then((json) => setusers(json));
+  }, []);
 
-  /*  async function loginHandle() {
-    const loginResponse = await fetch('https://jsonplaceholder.typicode.com/', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify(loginForm),
-    })
-      .then((loginResponse) => loginResponse.json())
-      .then((json) => console.log(json));
-  } */
+  async function loginHandle() {
+    const foundUser = users?.some((el) => {
+      return el.email === loginForm.email && el.password === loginForm.password;
+    });
+    if (foundUser) {
+      navigate('/Content');
+    }
+    console.log(foundUser);
+  }
 
   return (
     <div>
@@ -107,6 +112,7 @@ const Login = () => {
                             type="submit"
                             data-mdb-ripple="true"
                             data-mdb-ripple-color="light"
+                            onClick={loginHandle}
                           >
                             Log in
                           </button>

@@ -1,9 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-type Props = {};
-
-function Header({}: Props) {
+function Header() {
   return (
     <div className="flex justify-between h-[10px] w-auto p-8 mb-4 ">
       <div className="flex justify-between text-white">
