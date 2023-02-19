@@ -34,6 +34,13 @@
       "lastName": "user",
       "email": "user@gmail.com",
       "password": "password"
+    },
+    {
+      "id": "2a6a7514-29a4-4d7f-88b9-1568bfa980b7",
+      "firstName": "nick",
+      "lastName": "smith",
+      "email": "nick@gmail.com",
+      "password": "password"
     }
   ]
 }

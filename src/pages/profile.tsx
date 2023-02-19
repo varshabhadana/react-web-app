@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import EditInput from '../components/EditInput';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
@@ -13,15 +14,33 @@ export type UserDetail = {
 
 const Profile = () => {
   const [userDetails, setUserDetails] = useState<UserDetail>();
+  const [editMode, setEditMode] = useState<boolean>(false);
+  const [editUserDetails, seteditUserDetails] = useState<UserDetail>();
   const navigate = useNavigate();
 
   const id = localStorage.getItem('userId');
+
+  function handleEdit(event: React.ChangeEvent<HTMLInputElement>) {
+    if (editUserDetails) {
+      seteditUserDetails({
+        ...editUserDetails,
+        [event.currentTarget.id]: event.currentTarget.value,
+      });
+    }
+  }
+
+  function handleCancelEdit() {
+    seteditUserDetails(userDetails);
+  }
 
   useEffect(() => {
     if (id) {
       fetch(`http://localhost:3000/users/${id}`)
         .then((response) => response.json())
-        .then((json) => setUserDetails(json));
+        .then((json) => {
+          setUserDetails(json);
+          seteditUserDetails(json);
+        });
     } else {
       navigate('/login');
     }
@@ -74,29 +93,77 @@ const Profile = () => {
                     <div className="text-sm font-medium text-gray-500">
                       First Name
                     </div>
-                    <div className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                      {userDetails.firstName}
-                    </div>
+
+                    <EditInput
+                      id={'firstName'}
+                      value={editUserDetails?.firstName}
+                      editMode={editMode}
+                      handleEdit={handleEdit}
+                    />
                   </div>
                   <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                     <div className="text-sm font-medium text-gray-500">
                       Last Name
                     </div>
-                    <div className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                      {userDetails.lastName}
-                    </div>
+                    <EditInput
+                      id={'lastName'}
+                      value={editUserDetails?.lastName}
+                      editMode={editMode}
+                      handleEdit={handleEdit}
+                    />
                   </div>
 
                   <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                     <div className="text-sm font-medium text-gray-500">
                       Email Address
                     </div>
-                    <div className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                      {userDetails.email}
-                    </div>
+                    <EditInput
+                      id={'email'}
+                      value={editUserDetails?.email}
+                      editMode={editMode}
+                      handleEdit={handleEdit}
+                    />
                   </div>
                 </div>
               </div>
+            </div>
+          )}
+          {editMode ? (
+            <div>
+              {' '}
+              <button
+                type="button"
+                onClick={() => {
+                  handleCancelEdit();
+                  setEditMode(false);
+                }}
+                className="inline-block px-8 py-2 border-2 border-black text-black font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out h-[40px]"
+                data-mdb-ripple="true"
+                data-mdb-ripple-color="light"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={() => setEditMode(false)}
+                className="inline-block px-8 py-2 border-2 border-black text-black font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out h-[40px]"
+                data-mdb-ripple="true"
+                data-mdb-ripple-color="light"
+              >
+                Save
+              </button>
+            </div>
+          ) : (
+            <div>
+              <button
+                type="button"
+                onClick={() => setEditMode(true)}
+                className="inline-block px-8 py-2 border-2 border-black text-black font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out h-[40px]"
+                data-mdb-ripple="true"
+                data-mdb-ripple-color="light"
+              >
+                Edit
+              </button>
             </div>
           )}
         </div>

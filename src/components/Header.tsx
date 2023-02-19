@@ -1,3 +1,4 @@
+import { UserIcon } from '@heroicons/react/20/solid';
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -12,19 +13,34 @@ function Header() {
         </Link>
       </div>
       {id ? (
-        <button
-          onClick={() => {
-            localStorage.removeItem('userId');
-            navigate('/');
-            console.log('logout');
-          }}
-          type="button"
-          className="inline-block px-8 py-2 border-2 border-white text-white font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out h-[40px]"
-          data-mdb-ripple="true"
-          data-mdb-ripple-color="light"
-        >
-          Logout
-        </button>
+        <div className="flex gap-4">
+          {' '}
+          <button
+            onClick={() => {
+              localStorage.removeItem('userId');
+              navigate('/');
+              console.log('logout');
+            }}
+            type="button"
+            className="inline-block px-8 py-2 border-2 border-white text-white font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out h-[40px]"
+            data-mdb-ripple="true"
+            data-mdb-ripple-color="light"
+          >
+            Logout
+          </button>
+          <div>
+            <Link to={'/profile'}>
+              <button
+                type="button"
+                className="inline-block px-8 py-2 border-2 border-white text-white font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out h-[40px]"
+                data-mdb-ripple="true"
+                data-mdb-ripple-color="light"
+              >
+                Profile
+              </button>
+            </Link>
+          </div>
+        </div>
       ) : (
         <div>
           {' '}
