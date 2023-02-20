@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Button from '../components/Button';
 import EditInput from '../components/EditInput';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
 export type UserDetail = {
-  id: number;
+  id: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -46,126 +47,101 @@ const Profile = () => {
     }
   }, [id]);
 
+  async function updateUserDetail(id: string) {
+    const response = await fetch(`http://localhost:3000/users/${id}`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(editUserDetails),
+    });
+    const data = await response.json();
+    setUserDetails(data);
+  }
+
   return (
-    <div className="bg-gray-200 h-screen p-8 ">
+    <div className="bg-blue-600 h-screen p-8 ">
       <div>
         <Header />
-        <div className="bg-white shadow-lg rounded-lg h-[500px] p-2  mb-6">
-          <div className="text-xl text-gray-600 mb-4 p-4 border-b-2 border-gray-200">
-            User Details
-          </div>
-          {userDetails && (
-            <div className="flex p-8">
-              <div className="flex flex-col my-2 mx-6">
-                <div className="mb-4 border-b-2 p-1 ">
-                  <img src="/youngboy.svg" alt="young boy avatar"></img>
+        <div className="flex justify-center">
+          <div className="bg-white shadow-lg rounded-lg h-[500px] w-[1200px] p-8  mb-6   ">
+            <div className="text-xl text-gray-600 mb-4 p-4 border-b-2 border-gray-200">
+              User Details
+            </div>
+            {userDetails && (
+              <div className="flex p-8 ">
+                <div className="flex flex-col my-2 mx-6">
+                  <div className="mb-6 border-b-2 p-1 w-[180px] h-auto ">
+                    <img src="/youngboy.svg" alt="young boy avatar"></img>
+                  </div>
                 </div>
-                <div className="flex justify-between text-sm text-gray-600  w-[180px] h-auto">
+                <div className="w-11/12 ">
+                  <div className="ml-8  ">
+                    <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                      <div className="text-sm font-medium text-gray-500 ">
+                        First Name
+                      </div>
+
+                      <EditInput
+                        id={'firstName'}
+                        value={editUserDetails?.firstName}
+                        editMode={editMode}
+                        handleEdit={handleEdit}
+                      />
+                    </div>
+                    <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                      <div className="text-sm font-medium text-gray-500">
+                        Last Name
+                      </div>
+                      <EditInput
+                        id={'lastName'}
+                        value={editUserDetails?.lastName}
+                        editMode={editMode}
+                        handleEdit={handleEdit}
+                      />
+                    </div>
+
+                    <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                      <div className="text-sm font-medium text-gray-500">
+                        Email Address
+                      </div>
+                      <EditInput
+                        id={'email'}
+                        value={editUserDetails?.email}
+                        editMode={editMode}
+                        handleEdit={handleEdit}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+            <div className=" flex justify-end p-5">
+              {editMode ? (
+                <div className="flex justify-between gap-4">
                   {' '}
-                  <div>
-                    {' '}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="w-6 h-6"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
-                      />
-                    </svg>
-                  </div>
-                  <div className="ml-2 text-sm text-gray-600 mb-5"></div>
+                  <Button
+                    text={'Cancel'}
+                    handleClick={() => {
+                      handleCancelEdit();
+                      setEditMode(false);
+                    }}
+                  />
+                  <Button
+                    text={'Save'}
+                    handleClick={() => {
+                      setEditMode(false);
+                      updateUserDetail(editUserDetails?.id as string);
+                    }}
+                  />
                 </div>
-              </div>
-              <div className="w-10/12">
-                <div className="ml-8 ">
-                  <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <div className="text-sm font-medium text-gray-500">
-                      First Name
-                    </div>
-
-                    <EditInput
-                      id={'firstName'}
-                      value={editUserDetails?.firstName}
-                      editMode={editMode}
-                      handleEdit={handleEdit}
-                    />
-                  </div>
-                  <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <div className="text-sm font-medium text-gray-500">
-                      Last Name
-                    </div>
-                    <EditInput
-                      id={'lastName'}
-                      value={editUserDetails?.lastName}
-                      editMode={editMode}
-                      handleEdit={handleEdit}
-                    />
-                  </div>
-
-                  <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <div className="text-sm font-medium text-gray-500">
-                      Email Address
-                    </div>
-                    <EditInput
-                      id={'email'}
-                      value={editUserDetails?.email}
-                      editMode={editMode}
-                      handleEdit={handleEdit}
-                    />
-                  </div>
+              ) : (
+                <div>
+                  <Button text={'Edit'} handleClick={() => setEditMode(true)} />
                 </div>
-              </div>
+              )}
             </div>
-          )}
-          {editMode ? (
-            <div>
-              {' '}
-              <button
-                type="button"
-                onClick={() => {
-                  handleCancelEdit();
-                  setEditMode(false);
-                }}
-                className="inline-block px-8 py-2 border-2 border-black text-black font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out h-[40px]"
-                data-mdb-ripple="true"
-                data-mdb-ripple-color="light"
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                onClick={() => setEditMode(false)}
-                className="inline-block px-8 py-2 border-2 border-black text-black font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out h-[40px]"
-                data-mdb-ripple="true"
-                data-mdb-ripple-color="light"
-              >
-                Save
-              </button>
-            </div>
-          ) : (
-            <div>
-              <button
-                type="button"
-                onClick={() => setEditMode(true)}
-                className="inline-block px-8 py-2 border-2 border-black text-black font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out h-[40px]"
-                data-mdb-ripple="true"
-                data-mdb-ripple-color="light"
-              >
-                Edit
-              </button>
-            </div>
-          )}
+          </div>
         </div>
       </div>
       <Footer />

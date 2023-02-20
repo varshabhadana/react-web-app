@@ -2,17 +2,10 @@
   "users": [
     {
       "id": "1",
-      "firstName": "Leanne",
+      "firstName": "Leo",
       "lastName": "Graham",
-      "email": "graham@gmail.com",
+      "email": "leon@gmail.com",
       "password": "password@123"
-    },
-    {
-      "id": "56ec69dc-fd3c-48bc-a8ca-331c0d680b19",
-      "firstName": "Varsha",
-      "lastName": "Bhadana",
-      "email": "varshabhadana93@gmail.com",
-      "password": "password"
     },
     {
       "id": "84fc624f-9b00-4787-8f8a-cca41ad74428",
