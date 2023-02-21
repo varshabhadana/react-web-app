@@ -19,7 +19,13 @@ const initialFormValues = {
 
 function Register() {
   const navigate = useNavigate();
+
   const [form, setFormValues] = useState<Form>(initialFormValues);
+  const [error, setError] = useState<boolean>(false);
+
+  const passwordRegex =
+    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/g;
+
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setFormValues({
       ...form,
@@ -27,21 +33,36 @@ function Register() {
     });
   }
   async function registerHandle() {
-    const newUser = await fetch('http://localhost:3000/users', {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({
-        id: uuidv4(),
-        firstName: form.firstName,
-        lastName: form.lastName,
-        email: form.email,
-        password: form.password,
-      }),
-    });
-    const response = await newUser.json();
-    if (response.id) {
-      localStorage.setItem('userId', response.id);
-      navigate('/Content');
+    if (
+      typeof form.firstName !== 'string' ||
+      typeof form.lastName !== 'string' ||
+      typeof form.email !== 'string' ||
+      typeof form.password !== 'string' ||
+      !form.firstName ||
+      !form.lastName ||
+      !form.email ||
+      !form.password ||
+      !form.password.match(passwordRegex)
+    ) {
+      return setError(!error);
+    } else {
+      const newUser = await fetch('http://localhost:3000/users', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          id: uuidv4(),
+          firstName: form.firstName,
+          lastName: form.lastName,
+          email: form.email,
+          password: form.password,
+        }),
+      });
+      const response = await newUser.json();
+      if (response.id) {
+        setFormValues(initialFormValues);
+        localStorage.setItem('userId', response.id);
+        navigate('/Content');
+      }
     }
   }
   return (
@@ -77,13 +98,12 @@ function Register() {
                   className="flex flex-col w-full flex space-y-3 "
                   onSubmit={(event) => {
                     event.preventDefault();
-                    setFormValues(initialFormValues);
+                    registerHandle();
                   }}
                 >
                   <h1 className=" text-xl font-semibold mt-1 mb-12 pb-1 text-center tracking-tight text-gray-900">
                     Create Account
                   </h1>
-
                   <input
                     className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                     type="text"
@@ -94,7 +114,6 @@ function Register() {
                     onChange={handleChange}
                     required
                   />
-
                   <input
                     className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                     type="text"
@@ -105,7 +124,6 @@ function Register() {
                     onChange={handleChange}
                     required
                   />
-
                   <input
                     className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                     type="text"
@@ -115,8 +133,7 @@ function Register() {
                     value={form.email}
                     onChange={handleChange}
                     required
-                  />
-
+                  />{' '}
                   <input
                     className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                     type="password"
@@ -125,16 +142,22 @@ function Register() {
                     placeholder="Password"
                     value={form.password}
                     onChange={handleChange}
-                    required
                   />
+                  {error && (
+                    <div className=" flex text-sm text-red-600">
+                      <span>
+                        {' '}
+                        Password must contain 8 or more characters with mix of
+                        letters, numbers and symbols.
+                      </span>
+                    </div>
+                  )}
                   <button
                     className="inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3 bg-blue-500"
                     type="submit"
-                    onClick={registerHandle}
                   >
                     Register
                   </button>
-
                   <h3 className="mt-4">
                     Already have an account ?{' '}
                     <Link to={'/login'}>

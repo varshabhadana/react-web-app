@@ -16,7 +16,7 @@
     },
     {
       "id": "18f5eaa4-500f-49c6-8969-ab84626ff8dc",
-      "firstName": "max",
+      "firstName": "varsha",
       "lastName": "nom",
       "email": "varsha@gmail.com",
       "password": "password"
@@ -34,6 +34,27 @@
       "lastName": "smith",
       "email": "nick@gmail.com",
       "password": "password"
+    },
+    {
+      "id": "9440ecad-c239-446b-978c-a1c33fdd460f",
+      "firstName": "test",
+      "lastName": "new",
+      "email": "new@gmail.com",
+      "password": "abc"
+    },
+    {
+      "id": "ea325f3e-8988-4386-aeff-5f5fac35794d",
+      "firstName": "amit",
+      "lastName": "nagar",
+      "email": "amitnagar@gmail.com",
+      "password": "Am@230793"
+    },
+    {
+      "id": "ca2de776-e65c-487e-bf1c-079042ed369f",
+      "firstName": "ddfd",
+      "lastName": "dfdfd",
+      "email": "amitnagar@gmail.com",
+      "password": "Va@230793"
     }
   ]
 }

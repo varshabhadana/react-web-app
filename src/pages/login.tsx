@@ -15,6 +15,8 @@ const Login = (props: any) => {
   const navigate = useNavigate();
   const [loginForm, setLoginForm] = useState<LoginForm>(initialValues);
   const [users, setusers] = useState<UserDetail[]>([]);
+  const [error, setError] = useState<boolean>(false);
+
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setLoginForm({
       ...loginForm,
@@ -34,9 +36,7 @@ const Login = (props: any) => {
     if (foundUser) {
       navigate('/Content');
       localStorage.setItem('userId', String(foundUser.id));
-    }
-
-    console.log(foundUser);
+    } else setError(!error);
   }
 
   return (
@@ -84,10 +84,18 @@ const Login = (props: any) => {
                       <form
                         onSubmit={(event) => {
                           event.preventDefault();
+                          loginHandle();
                           setLoginForm(initialValues);
                         }}
                       >
                         <p className="mb-4">Please login to your account</p>
+
+                        {error && (
+                          <div className=" flex text-sm text-red-600 p-2">
+                            <span> Email or Password does not match</span>
+                          </div>
+                        )}
+
                         <div className="mb-4">
                           <input
                             type="text"
@@ -96,6 +104,7 @@ const Login = (props: any) => {
                             placeholder="Email"
                             value={loginForm.email}
                             onChange={handleChange}
+                            required
                           />
                         </div>
                         <div className="mb-4">
@@ -106,6 +115,7 @@ const Login = (props: any) => {
                             placeholder="Password"
                             value={loginForm.password}
                             onChange={handleChange}
+                            required
                           />
                         </div>
                         <div className="text-center pt-1 mb-12 pb-1">
@@ -114,7 +124,6 @@ const Login = (props: any) => {
                             type="submit"
                             data-mdb-ripple="true"
                             data-mdb-ripple-color="light"
-                            onClick={loginHandle}
                           >
                             Log in
                           </button>
