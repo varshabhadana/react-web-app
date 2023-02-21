@@ -60,7 +60,7 @@ const Profile = () => {
   }
 
   return (
-    <div className="bg-blue-600 h-screen p-8 ">
+    <div className="bg-gray-200 h-screen p-8 ">
       <div>
         <Header />
         <div className="flex justify-center">

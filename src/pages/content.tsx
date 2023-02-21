@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
+import Video from '../components/Video';
+import Media from '../components/Visuals';
 import { UserDetail } from './Profile';
 
 const Content = () => {
@@ -20,9 +23,13 @@ const Content = () => {
   }, [id]);
 
   return (
-    <div className="bg-blue-600 h-screen">
+    <div className="bg-white h-full">
       <Header />
-      <div className="text-xl">Hey {userDetails?.firstName} !</div>
+      <div className="text-xl p-4">Hey {userDetails?.firstName} !</div>
+      <Video />
+      <Media />
+
+      <Footer />
     </div>
   );
 };
