@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
+import AppLayout from '../components/AppLayout';
 import Video from '../components/Video';
 import Media from '../components/Visuals';
 import { UserDetail } from './Profile';
@@ -23,14 +22,15 @@ const Content = () => {
   }, [id]);
 
   return (
-    <div className="bg-white h-full">
-      <Header />
-      <div className="text-xl p-4">Hey {userDetails?.firstName} !</div>
-      <Video />
-      <Media />
-
-      <Footer />
-    </div>
+    <AppLayout>
+      <div className="bg-[#f8edeb] font-nanumMyeongjo text-2xl h-full">
+        <div className=" text-[#1b4332] text-3xl text-left p-4">
+          Hey {userDetails?.firstName}!
+        </div>
+        <Video />
+        <Media />
+      </div>
+    </AppLayout>
   );
 };
 

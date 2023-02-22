@@ -41,7 +41,7 @@ const Login = (props: any) => {
 
   return (
     <div>
-      <section className="h-full flex justify-center items-center bg-gray-200 ">
+      <section className="h-full flex justify-center items-center bg-[#f8edeb] ">
         <div className="container py-12 px-6 h-full">
           <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
             <div className="xl:w-10/12">
@@ -74,11 +74,11 @@ const Login = (props: any) => {
                       <div className="text-center">
                         <img
                           className="mx-auto w-48"
-                          src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+                          src="/paw.svg"
                           alt="logo"
                         />
-                        <h4 className="text-xl font-semibold mt-1 mb-12 pb-1">
-                          We are The Lotus Team
+                        <h4 className=" text-[#f28482] text-xl font-semibold mt-1 mb-12 pb-1">
+                          Woophy
                         </h4>
                       </div>
                       <form

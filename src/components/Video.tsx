@@ -6,7 +6,7 @@ const Video = (props: Props) => {
   const src = 'https://youtu.be/uYJQIKAVBw8';
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center px-2 py-6">
       <iframe
         width="1200"
         height="515"

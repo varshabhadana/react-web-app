@@ -66,7 +66,7 @@ function Register() {
     }
   }
   return (
-    <div className="flex h-full md:h-screen items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-200  ">
+    <div className="flex h-full md:h-screen items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-[#f8edeb]  ">
       <div className="overflow-hidden bg-white shadow-lg rounded-lg space-y-8 w-9/12 h-full ">
         <div className="p-2 ">
           {' '}

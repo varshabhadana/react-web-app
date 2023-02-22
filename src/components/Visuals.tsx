@@ -5,7 +5,7 @@ type Props = {};
 function Visuals({}: Props) {
   return (
     <>
-      <div className="flex justify-center items-center gap-8 px-6 py-4  ">
+      <div className="flex justify-center items-center gap-8 px-6 py-8  ">
         <div>
           {' '}
           <img
@@ -16,14 +16,14 @@ function Visuals({}: Props) {
           ></img>
         </div>
 
-        <div className="w-4/12">
+        <div className="w-4/12 text-[#1b4332] font-nanumMyeongjo">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt,
           cupiditate maiores tenetur eius delectus aut eligendi quibusdam? Iure,
           sapiente porro.
         </div>
       </div>
       <div className="flex justify-center items-center gap-8 px-6 py-4">
-        <div className="w-4/12">
+        <div className="w-4/12 text-[#1b4332] font-nanumMyeongjo">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt,
           cupiditate maiores tenetur eius delectus aut eligendi quibusdam? Iure,
           sapiente porro.
