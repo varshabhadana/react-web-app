@@ -14,7 +14,7 @@ const homepage = (props: Props) => {
                 {' '}
                 <img
                   src="/heroImage.svg"
-                  alt="dog picture"
+                  alt="dog"
                   width="700px"
                   height="200px"
                 />

@@ -1,8 +1,6 @@
 import React from 'react';
 
-type Props = {};
-
-function Visuals({}: Props) {
+function Visuals() {
   return (
     <>
       <div className="flex justify-center items-center gap-8 px-6 py-8  ">
@@ -16,14 +14,14 @@ function Visuals({}: Props) {
           ></img>
         </div>
 
-        <div className="w-4/12 text-[#1b4332] font-nanumMyeongjo">
+        <div className="w-4/12 text-[#1b4332] font-nanumMyeongjo leading-relaxed">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt,
           cupiditate maiores tenetur eius delectus aut eligendi quibusdam? Iure,
           sapiente porro.
         </div>
       </div>
       <div className="flex justify-center items-center gap-8 px-6 py-4">
-        <div className="w-4/12 text-[#1b4332] font-nanumMyeongjo">
+        <div className="w-4/12 text-[#1b4332] font-nanumMyeongjo leading-relaxed">
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt,
           cupiditate maiores tenetur eius delectus aut eligendi quibusdam? Iure,
           sapiente porro.

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AppLayout from '../components/AppLayout';
 import Video from '../components/Video';
-import Media from '../components/Visuals';
+import Visuals from '../components/Visuals';
 import { UserDetail } from './Profile';
 
 const Content = () => {
@@ -18,8 +18,7 @@ const Content = () => {
     } else {
       navigate('/login');
     }
-    console.log('userDetails', userDetails);
-  }, [id]);
+  }, [id, navigate]);
 
   return (
     <AppLayout>
@@ -28,7 +27,7 @@ const Content = () => {
           Hey {userDetails?.firstName}!
         </div>
         <Video />
-        <Media />
+        <Visuals />
       </div>
     </AppLayout>
   );

@@ -1,10 +1,6 @@
 import React from 'react';
 
-type Props = {};
-
-const Video = (props: Props) => {
-  const src = 'https://youtu.be/uYJQIKAVBw8';
-
+const Video = () => {
   return (
     <div className="flex justify-center px-2 py-6">
       <iframe

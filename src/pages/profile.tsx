@@ -44,7 +44,7 @@ const Profile = () => {
     } else {
       navigate('/login');
     }
-  }, [id]);
+  }, [id, navigate]);
 
   async function updateUserDetail(id: string) {
     const response = await fetch(`http://localhost:3000/users/${id}`, {
@@ -68,15 +68,15 @@ const Profile = () => {
                 User Details
               </div>
               {userDetails && (
-                <div className="flex p-8 ">
-                  <div className="flex flex-col my-2 mx-6">
-                    <div className="mb-6 p-1 w-[180px] h-auto ">
+                <div className="flex p-8  ">
+                  <div className="flex flex-col my-2 mx-6 ">
+                    <div className="mb-6 p-1 w-[180px] h-auto  ">
                       <img src="/youngboy.svg" alt="young boy avatar"></img>
                     </div>
                   </div>
-                  <div className="w-11/12 ">
+                  <div className="w-11/12 bg-[#f4f3ee]">
                     <div className="ml-8  ">
-                      <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                      <div className=" px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <div className="text-sm font-medium text-gray-500 font-nanumMyeongjo">
                           First Name
                         </div>
@@ -88,7 +88,7 @@ const Profile = () => {
                           handleEdit={handleEdit}
                         />
                       </div>
-                      <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                      <div className="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <div className="text-sm font-medium text-gray-500 font-nanumMyeongjo">
                           Last Name
                         </div>
@@ -100,7 +100,7 @@ const Profile = () => {
                         />
                       </div>
 
-                      <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                      <div className="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <div className="text-sm font-medium text-gray-500 font-nanumMyeongjo">
                           Email Address
                         </div>
