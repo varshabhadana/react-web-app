@@ -1,9 +1,19 @@
 import React from 'react';
 import AppLayout from '../components/AppLayout';
 
-type Props = {};
+type TButtonProps = {
+  text: string;
+};
 
-const homepage = (props: Props) => {
+function StyledButton({ text }: TButtonProps) {
+  return (
+    <button className="border-2 text-[#1b4332] border-[#84a59d] p-2 font-medium text-md leading-tight uppercase rounded transition duration-500 ease-in-out hover:bg-[#84a59d] hover:text-white transform hover:-translate-y-1 hover:scale-110">
+      {text}
+    </button>
+  );
+}
+
+const homepage = () => {
   return (
     <AppLayout>
       <div className="bg-[#f8edeb] h-screen ">
@@ -25,15 +35,8 @@ const homepage = (props: Props) => {
                   Share Your Pet Life
                 </h1>
                 <div className="mr-5 w-2/12 flex justify-center items-center gap-4 w-6/12 px-4 py-6">
-                  <ul>
-                    <li className="border-2 text-[#1b4332] border-[#84a59d] p-2 font-medium text-md leading-tight uppercase rounded transition duration-500 ease-in-out hover:bg-[#84a59d] hover:text-white transform hover:-translate-y-1 hover:scale-110">
-                      <a href="#">Learn More</a>
-                    </li>
-                  </ul>
-
-                  <button className="border-2 text-[#1b4332] border-[#84a59d] p-2 font-medium text-md leading-tight uppercase rounded transition duration-500 ease-in-out hover:bg-[#84a59d] hover:text-white transform hover:-translate-y-1 hover:scale-110 ">
-                    Get Started
-                  </button>
+                  <StyledButton text=" Learn More" />
+                  <StyledButton text="Get Started" />
                 </div>
               </div>
             </div>

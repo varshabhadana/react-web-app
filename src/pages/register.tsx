@@ -66,7 +66,7 @@ function Register() {
     }
   }
   return (
-    <div className="flex h-full md:h-screen items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-[#f8edeb]  ">
+    <div className="flex h-full md:h-screen items-center justify-center py-2 px-4 sm:px-6 lg:px-8 bg-[#f8edeb]  ">
       <div className="overflow-hidden bg-white shadow-lg rounded-lg space-y-8 w-9/12 h-full ">
         <div className="p-2 ">
           {' '}
@@ -90,17 +90,27 @@ function Register() {
             </svg>
           </button>
         </div>
-        <div className='flex justify-center items-center py-12 px-6  "'>
+        <div className='flex justify-center items-center   "'>
           <div className="xl:w-10/12 ">
             <div className="flex justify-center items-center">
-              <div className="w-8/12 flex justify-center items-center px-6 py-12 ">
+              <div className="w-8/12 flex justify-center items-center px-6 py-4 ">
                 <form
-                  className="flex flex-col w-full flex space-y-3 "
+                  className="flex flex-col w-full flex space-y-3 px-2 py-4 "
                   onSubmit={(event) => {
                     event.preventDefault();
                     registerHandle();
                   }}
                 >
+                  <div className="text-center">
+                    <img
+                      className="mx-auto w-[150px]"
+                      src="/paw.svg"
+                      alt="logo"
+                    />
+                    <h4 className=" text-[#f28482] text-xl font-semibold mt-1 mb-12 pb-1">
+                      Woophy
+                    </h4>
+                  </div>
                   <h1 className=" text-xl font-semibold mt-1 mb-12 pb-1 text-center tracking-tight text-gray-900">
                     Create Account
                   </h1>

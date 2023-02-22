@@ -71,7 +71,7 @@ const Profile = () => {
                 <div className="flex p-8  ">
                   <div className="flex flex-col my-2 mx-6 ">
                     <div className="mb-6 p-1 w-[180px] h-auto  ">
-                      <img src="/youngboy.svg" alt="young boy avatar"></img>
+                      <img src="/user.png" alt="user avatar"></img>
                     </div>
                   </div>
                   <div className="w-11/12 bg-[#f4f3ee]">
